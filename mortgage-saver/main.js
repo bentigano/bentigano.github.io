@@ -1,26 +1,10 @@
-const ctx = document.getElementById('myChart');
-new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: ['Principal', 'Interest'],
-      datasets: [{
-        data: [12, 19],
-        borderWidth: 2
-      }]
-    },
-    options: {
-        rotation: -90,
-        circumference: 180,
-      }
-  });
-
 // default some values for testing
-$( document ).ready(function() {
-    $("#loanAmount").val(400000);
-    $("#interestRate").val(5);
-    $("#loanTerm").val(15);
-    calculateMortgage();
-});
+// $( document ).ready(function() {
+//     $("#loanAmount").val(400000);
+//     $("#interestRate").val(5);
+//     $("#loanTerm").val(15);
+//     calculateMortgage();
+// });
 
 let loanAmount = 0;
 let interestRate = 0;
