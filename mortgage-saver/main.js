@@ -6,12 +6,12 @@
 //     calculateMortgage();
 // });
 
-let loanAmount = 0;
-let interestRate = 0;
-let loanTermYears = 0;
-let lastChangedPaymentAmount = 0;
-let originalPaymentSchedule = [];
-let updatedPaymentSchedule = [];
+var loanAmount = 0;
+var interestRate = 0;
+var loanTermYears = 0;
+var lastChangedPaymentAmount = 0;
+var originalPaymentSchedule = [];
+var updatedPaymentSchedule = [];
 
 function reset() {
     loanAmount = 0;
