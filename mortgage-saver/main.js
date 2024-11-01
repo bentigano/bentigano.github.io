@@ -16,14 +16,14 @@
 
 // default some values for testing
 $( document ).ready(function() {
-    // $("#loanAmount").val("$400,000.00");
-    // $("#interestRate").val(5);
-    // $("#loanTerm").val(15);
-    // const today = new Date();
-    // // Format the date to YYYY-MM-DD (required by the input type="date")
-    // const formattedDate = today.toISOString().slice(0, 10);
-    // $("#firstPaymentDate").val(formattedDate);
-    calculateMortgage();
+    //  $("#loanAmount").val("$400,000.00");
+    //  $("#interestRate").val(5);
+    //  $("#loanTerm").val(15);
+    //  const today = new Date();
+    //  // Format the date to YYYY-MM-DD (required by the input type="date")
+    //  const formattedDate = today.toISOString().slice(0, 10);
+    //  $("#firstPaymentDate").val(formattedDate);
+    //  calculateMortgage();
     formatCurrencyFields();
 });
 
