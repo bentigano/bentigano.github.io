@@ -16,7 +16,7 @@
 
 // default some values for testing
 $( document ).ready(function() {
-    //  $("#loanAmount").val("$400,000.00");
+    //  $("#loanAmount").val("$400,000");
     //  $("#interestRate").val(5);
     //  $("#loanTerm").val(15);
     //  const today = new Date();
@@ -28,7 +28,8 @@ $( document ).ready(function() {
 });
 
 function formatCurrencyFields() {
-    $('.currency-field').maskMoney({prefix:'$ ', allowNegative: false, allowZero: true, thousands:',', decimal:'.', affixesStay: true});
+    $('.currency-field').maskMoney({prefix:'$ ', allowNegative: false, allowZero: true, thousands:',', decimal:'.', affixesStay: true, precision: 0});
+    $('.currency-field-exact').maskMoney({prefix:'$ ', allowNegative: false, allowZero: true, thousands:',', decimal:'.', affixesStay: true});
 }
 
 var loanAmount = 0;
@@ -54,7 +55,10 @@ function reset() {
 var USDollar = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
+    maximumFractionDigits: 2
 });
+
+var DateFormatter = new Intl.DateTimeFormat('en-US', { dateStyle: 'short' });
 
 function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, interestRate, numberOfPayments, originalMortgage = false) {
     // Convert annual interest rate to monthly
@@ -128,7 +132,7 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
     let balanceAfterPayment = loanAmount - (monthlyPayment - interestOnly)
 
     return Payment = {
-        paymentDate: paymentDate.toLocaleDateString(),
+        paymentDate: DateFormatter.format(paymentDate),
         totalPayment: monthlyPayment,
         principalPayment: principalOnly,
         interestPayment: interestOnly,
@@ -205,12 +209,12 @@ function calculateMortgage() {
                 <td>${USDollar.format(totalInterest)}</td>-->
                 <td>
                     
-                        <input type="text" class="form-control form-control-sm mx-auto currency-field" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ExtraPayment" value='${payment.extraPrincipal > 0 ? USDollar.format(payment.extraPrincipal) : ''}' />
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ExtraPayment" value='${payment.extraPrincipal > 0 ? USDollar.format(payment.extraPrincipal) : ''}' />
                     
                 </td>
                 <td>
                     
-                        <input type="text" class="form-control form-control-sm mx-auto currency-field" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
                     
                 </td>
             </tr>
