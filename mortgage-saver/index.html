@@ -3,189 +3,194 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <title>Mortgage Saver</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha256-+IZRbz1B6ee9mUx/ejmonK+ulIP5A5bLDd6v6NHqXnI=" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-dark bg-dark" style="min-width: 700px;">
-        <div class="container">
-            <a class="navbar-brand" href="#">Mortgage Saver</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <!--<div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top p-2">
+        <a class="navbar-brand" href="#">
+            <h2>Mortgage Saver</h2>
+        </a>
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> -->
+
+        <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </li>
             <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
+              <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div>
             </li>
           </ul>
-          <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
-        </div>-->
-        </div>
+        </div> -->
     </nav>
-    <div class="container text-center my-2" style="min-width: 700px;">
-        <div class="row justify-content-md-center gx-5 justify-content-md-center">
-            <!-- <div class="col-lg-6"> -->
-            <div class="col-md-6 px-1 border border-opacity-10 rounded justify-content-md-center">
-                <p class="fs-5">Enter the details of your current mortgage:</p>
-                <form class="p-2">
-                    <div class="row p-1">
-                        <div class="col-3">
-                            <label for="loanAmount" class="form-label">Loan Amount</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="text" class="form-control currency-field" placeholder="$400,000.00"
-                                id="loanAmount" style="max-width: 10em;" />
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <div class="col-3">
-                            <label for="interestRate" class="form-label">Interest Rate</label>
-                        </div>
-                        <div class="col-9">
-                            <div class="input-group">
-                                <input type="number" class="form-control" placeholder="5.00" id="interestRate"
-                                    style="max-width: 6em;" />
-                                <div class="input-group-append">
-                                    <span class="input-group-text">%</span>
+
+    <main role="main" class="container text-center my-2">
+
+        <div class="starter-template">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm border border-opacity-10 rounded">
+                        <p>Enter the details of your current mortgage:</p>
+                        <form class="p-2">
+                            <div class="row p-1">
+                                <div class="col-3">
+                                    <label for="loanAmount" class="form-label">Loan Amount</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="text" class="form-control currency-field" placeholder="$400,000.00"
+                                        id="loanAmount" style="max-width: 10em;" />
                                 </div>
                             </div>
-                        </div>
+                            <div class="row p-1">
+                                <div class="col-3">
+                                    <label for="interestRate" class="form-label">Interest Rate</label>
+                                </div>
+                                <div class="col-9">
+                                    <div class="input-group">
+                                        <input type="number" class="form-control" placeholder="5.00" id="interestRate"
+                                            style="max-width: 6em;" />
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-3">
+                                    <label for="loanTerm" class="form-label">Loan Term (years)</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="number" class="form-control" id="loanTerm" placeholder="30"
+                                        style="max-width: 5em;">
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-3">
+                                    <label for="firstPaymentDate" class="form-label">First Payment Date</label>
+                                </div>
+                                <div class="col-9">
+                                    <input type="date" class="form-control" id="firstPaymentDate" placeholder=""
+                                        style="max-width: 10em;">
+                                </div>
+                            </div>
+                            <a class="btn btn-primary" onclick="calculateMortgage(); return false;">Calculate</a>
+                            <a class="btn btn-secondary" onclick="reset(); return true;">Reset</a>
+                        </form>
                     </div>
-                    <div class="row p-1">
-                        <div class="col-3">
-                            <label for="loanTerm" class="form-label">Loan Term (years)</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="number" class="form-control" id="loanTerm" placeholder="30"
-                                style="max-width: 5em;">
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <div class="col-3">
-                            <label for="firstPaymentDate" class="form-label">First Payment Date</label>
-                        </div>
-                        <div class="col-9">
-                            <input type="date" class="form-control" id="firstPaymentDate" placeholder=""
-                                style="max-width: 10em;">
-                        </div>
-                    </div>
-                    <a class="btn btn-primary" onclick="calculateMortgage(); return false;">Calculate</a>
-                    <a class="btn btn-secondary" onclick="reset(); return true;">Reset</a>
-                </form>
-            </div>
-            <!-- </div> -->
-
-            <!-- <div class="col-lg-6"> -->
-            <div class="col-md-6 px-1 border border-opacity-10 rounded">
-                <p class="fs-5">Calculated Results & Savings</p>
-                <form class="p-2">
-                    <div class="row p-1">
-                        <div class="col-5">
-                            <label for="minMonthlyPayment" class="form-label">Minimum Monthly Payment</label>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" class="form-control" placeholder="0.00" id="minMonthlyPayment" readonly
-                                style="max-width: 10em;" />
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <div class="col-5">
-                            <label for="totalInterestPaid" class="form-label text-danger">Total Interest
-                                Paid</label>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" class="form-control" placeholder="0.00" id="totalInterestPaid" readonly
-                                style="max-width: 10em;" />
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <div class="col-5">
-                            <label for="totalInterestSaved" class="form-label text-success">Total Interest
-                                Saved</label>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" class="form-control" placeholder="0.00" id="totalInterestSaved" readonly
-                                style="max-width: 10em;" />
-                        </div>
-                    </div>
-                    <div class="row p-1">
-                        <div class="col-5">
-                            <label for="loanTermShortenedBy" class="form-label text-success">Loan Term Shortened
-                                By</label>
-                        </div>
-                        <div class="col-7">
-                            <input type="text" class="form-control" id="loanTermShortenedBy"
-                                placeholder="0 years, 0 months" readonly style="max-width: 12em;">
-                        </div>
-                    </div>
-                </form>
-                <!-- <div>
+                    <div class="col-sm border border-opacity-10 rounded">
+                        <p>Calculated Results & Savings</p>
+                        <form class="p-2">
+                            <div class="row p-1">
+                                <div class="col-5">
+                                    <label for="minMonthlyPayment" class="form-label">Minimum Monthly Payment</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" placeholder="0.00" id="minMonthlyPayment"
+                                        readonly style="max-width: 10em;" />
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5">
+                                    <label for="totalInterestPaid" class="form-label text-danger">Total Interest
+                                        Paid</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" placeholder="0.00" id="totalInterestPaid"
+                                        readonly style="max-width: 10em;" />
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5">
+                                    <label for="totalInterestSaved" class="form-label text-success">Total Interest
+                                        Saved</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" placeholder="0.00" id="totalInterestSaved"
+                                        readonly style="max-width: 10em;" />
+                                </div>
+                            </div>
+                            <div class="row p-1">
+                                <div class="col-5">
+                                    <label for="loanTermShortenedBy" class="form-label text-success">Loan Term Shortened
+                                        By</label>
+                                </div>
+                                <div class="col-7">
+                                    <input type="text" class="form-control" id="loanTermShortenedBy"
+                                        placeholder="0 years, 0 months" readonly style="max-width: 12em;">
+                                </div>
+                            </div>
+                        </form>
+                        <!-- <div>
                         <canvas id="myChart"></canvas>
                       </div> -->
-            </div>
-            <!-- </div> -->
-        </div> <!-- .row -->
-        <div class="row justify-content-md-center gx-5">
-            <h2>Payment Schedule</h2>
-            <div class="col">
-                <table id="paymentScheduleTable" class="table table-striped table-hover table-sm">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Year</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Balance</th>
-                            <th scope="col">Principle</th>
-                            <th scope="col">Interest</th>
-                            <th scope="col">Total Payment</th>
-                            <!-- <th scope="col">Total Principle</th>
+                    </div>
+                </div> <!-- .row -->
+                <div class="row mx-auto">
+                    <div class="col">
+                        <h3>Payment Schedule</h3>
+                    </div>
+                </div> <!-- .row -->
+            </div> <!-- .container -->
+            <div class="container">
+                <div class="row">
+                    <div class="col table-responsive-sm">
+                        <table id="paymentScheduleTable" class="table table-striped table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Balance</th>
+                                    <th scope="col">Principle</th>
+                                    <th scope="col">Interest</th>
+                                    <th scope="col">Total Payment</th>
+                                    <!-- <th scope="col">Total Principle</th>
                         <th scope="col">Total Interest</th> -->
-                            <th scope="col">One-Time Payment</th>
-                            <th scope="col">Changed Monthly Payment</th>
-                        </tr>
-                    </thead>
-                    <tbody class="table-group-divider" style="font-size:small;">
+                                    <th scope="col">One-Time Payment</th>
+                                    <th scope="col">Changed Monthly Payment</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider" style="font-size:small;">
 
-                    </tbody>
-                </table>
-            </div>
-        </div> <!-- .row -->
-    </div> <!-- .container -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- .row-->
+            </div> <!-- .container -->
+        </div> <!-- .starter-template -->
+    </main><!-- /.container -->
+
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"
         integrity="sha512-Rdk63VC+1UYzGSgd3u2iadi0joUrcwX0IWp2rTh6KXFoAmgOjRS99Vynz1lJPT8dLjvo6JZOqpAHJyfCEZ5KoA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha256-GRJrh0oydT1CwS36bBeJK/2TggpaUQC6GzTaTQdZm0k=" crossorigin="anonymous"></script>
     <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
     <script src="main.js"></script>
 </body>

@@ -204,14 +204,14 @@ function calculateMortgage() {
                 <!--<td>${USDollar.format(totalPrincipal)}</td>
                 <td>${USDollar.format(totalInterest)}</td>-->
                 <td>
-                    <div class="input-group input-group-sm mx-auto">
-                        <input type="text" class="form-control mx-auto currency-field" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ExtraPayment" value='${payment.extraPrincipal > 0 ? USDollar.format(payment.extraPrincipal) : ''}' />
-                    </div>
+                    
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ExtraPayment" value='${payment.extraPrincipal > 0 ? USDollar.format(payment.extraPrincipal) : ''}' />
+                    
                 </td>
                 <td>
-                    <div class="input-group input-group-sm mx-auto">
-                        <input type="text" class="form-control mx-auto currency-field" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
-                    </div>
+                    
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
+                    
                 </td>
             </tr>
         `);

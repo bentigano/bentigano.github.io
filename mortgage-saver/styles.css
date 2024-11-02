@@ -1,0 +1,16 @@
+body {
+    padding-top: 1rem;
+  }
+  .starter-template {
+    padding: 4rem 1.5rem;
+  }
+  .table-sm td, .table-sm th {
+    padding: .1rem;
+}
+
+tr {
+  line-height: 1.5;
+}
+.table td {
+  vertical-align: middle;
+}
