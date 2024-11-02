@@ -2,34 +2,36 @@
 // new Chart(ctx, {
 //     type: 'doughnut',
 //     data: {
-//       labels: ['Principal', 'Interest'],
-//       datasets: [{
-//         data: [12, 19],
-//         borderWidth: 2
-//       }]
+//         labels: ['Principal', 'Interest'],
+//         datasets: [{
+//             data: [12, 19],
+//             borderWidth: 2
+//         }]
 //     },
 //     options: {
 //         rotation: -90,
 //         circumference: 180,
-//       }
-//   });
+//         responsive: true,
+//         maintainAspectRatio: false,
+//     }
+// });
 
 // default some values for testing
-$( document ).ready(function() {
-    //  $("#loanAmount").val("$400,000");
-    //  $("#interestRate").val(5);
-    //  $("#loanTerm").val(15);
-    //  const today = new Date();
-    //  // Format the date to YYYY-MM-DD (required by the input type="date")
-    //  const formattedDate = today.toISOString().slice(0, 10);
-    //  $("#firstPaymentDate").val(formattedDate);
-    //  calculateMortgage();
+$(document).ready(function () {
+    // $("#loanAmount").val("$400,000");
+    // $("#interestRate").val(5);
+    // $("#loanTerm").val(15);
+    // const today = new Date();
+    // // Format the date to YYYY-MM-DD (required by the input type="date")
+    // const formattedDate = today.toISOString().slice(0, 10);
+    // $("#firstPaymentDate").val(formattedDate);
+    // calculateMortgage();
     formatCurrencyFields();
 });
 
 function formatCurrencyFields() {
-    $('.currency-field').maskMoney({prefix:'$ ', allowNegative: false, allowZero: true, thousands:',', decimal:'.', affixesStay: true, precision: 0});
-    $('.currency-field-exact').maskMoney({prefix:'$ ', allowNegative: false, allowZero: true, thousands:',', decimal:'.', affixesStay: true});
+    $('.currency-field').maskMoney({ prefix: '$ ', allowNegative: false, allowZero: true, thousands: ',', decimal: '.', affixesStay: true, precision: 0 });
+    $('.currency-field-exact').maskMoney({ prefix: '$ ', allowNegative: false, allowZero: true, thousands: ',', decimal: '.', affixesStay: true });
 }
 
 var loanAmount = 0;
@@ -73,9 +75,9 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
         numberOfPayments -= (paymentNumber - 1);
 
     // Calculate the monthly payment using the formula
-    let monthlyPayment = loanAmount * 
-      (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) / 
-      (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
+    let monthlyPayment = loanAmount *
+        (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, numberOfPayments)) /
+        (Math.pow(1 + monthlyInterestRate, numberOfPayments) - 1);
 
     if (!originalMortgage) {
         if (monthlyPayment < originalPaymentSchedule[0].totalPayment) {
@@ -95,10 +97,10 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
         let changedPaymentToInput = $(`#pmt${paymentNumber}ChangePayment`).val();
 
         if (extraPrincipalPaymentInput != undefined) {
-            extraPrincipalPayment = parseFloat(extraPrincipalPaymentInput.replace(/[^0-9\.-]+/g,""));
+            extraPrincipalPayment = parseFloat(extraPrincipalPaymentInput.replace(/[^0-9\.-]+/g, ""));
         }
         if (changedPaymentToInput != undefined) {
-            changedPaymentTo = parseFloat(changedPaymentToInput.replace(/[^0-9\.-]+/g,""));
+            changedPaymentTo = parseFloat(changedPaymentToInput.replace(/[^0-9\.-]+/g, ""));
         }
 
         if (isNaN(extraPrincipalPayment))
@@ -141,7 +143,7 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
         extraPrincipal: extraPrincipalPayment,
         changePayment: changedPaymentTo
     };
-  }
+}
 
 function calculateMortgage() {
 
@@ -153,33 +155,33 @@ function calculateMortgage() {
     firstPaymentDate = new Date(Date.parse($("#firstPaymentDate").val()));
 
     if (loanAmount.val() <= 10000) {
-        if(!loanAmount.hasClass('is-invalid')){
+        if (!loanAmount.hasClass('is-invalid')) {
             loanAmount.addClass('is-invalid');
-           }
+        }
         valid = false;
     } else {
         loanAmount.removeClass("is-invalid");
     }
     if (interestRate.val() <= 0) {
-        if(!interestRate.hasClass('is-invalid')){
+        if (!interestRate.hasClass('is-invalid')) {
             interestRate.addClass('is-invalid');
-           }
+        }
         valid = false;
     } else {
         interestRate.removeClass("is-invalid");
     }
     if (loanTermYears.val() <= 0) {
-        if(!loanTermYears.hasClass('is-invalid')){
+        if (!loanTermYears.hasClass('is-invalid')) {
             loanTermYears.addClass('is-invalid');
-           }
+        }
         valid = false;
     } else {
         loanTermYears.removeClass("is-invalid");
     }
     if (!(firstPaymentDate instanceof Date && !isNaN(firstPaymentDate))) {
-        if(!$("#firstPaymentDate").hasClass('is-invalid')){
+        if (!$("#firstPaymentDate").hasClass('is-invalid')) {
             $("#firstPaymentDate").addClass('is-invalid');
-           }
+        }
         valid = false;
     } else {
         $("#firstPaymentDate").removeClass("is-invalid");
@@ -205,6 +207,13 @@ function calculateMortgage() {
     $("#totalInterestPaid").val(USDollar.format(totalInterestPaid));
     $("#totalInterestSaved").val(USDollar.format((originalInterestDue - totalInterestPaid)));
 
+    $("#interestGaugeDiv").css("display","flex");
+    let interestGauge = $("#interestGauge");
+    let interestPercent = (totalInterestPaid / originalInterestDue) * 100;
+    interestGauge.attr("aria-valuenow", interestPercent);
+    interestGauge.css("width",`${interestPercent}%`);
+
+
     let paymentsSaved = originalPaymentSchedule.length - updatedPaymentSchedule.length;
     let yearsSaved = Math.trunc(paymentsSaved / 12);
     let monthsSaved = paymentsSaved % 12;
@@ -221,19 +230,19 @@ function calculateMortgage() {
 
         const totalPrincipal = updatedPaymentSchedule.reduce((accumulator, currentPayment) => {
             if (currentPayment.paymentNumber <= payment.paymentNumber) {
-              return accumulator + currentPayment.principalPayment;
+                return accumulator + currentPayment.principalPayment;
             } else {
-              return accumulator;
+                return accumulator;
             }
-          }, 0);
+        }, 0);
 
         const totalInterest = updatedPaymentSchedule.reduce((accumulator, currentPayment) => {
             if (currentPayment.paymentNumber <= payment.paymentNumber) {
-              return accumulator + currentPayment.interestPayment;
+                return accumulator + currentPayment.interestPayment;
             } else {
-              return accumulator;
+                return accumulator;
             }
-          }, 0);
+        }, 0);
 
         $('#paymentScheduleTable > tbody:last-child').append(`
             <tr>
@@ -266,7 +275,7 @@ function calculateMortgage() {
 function calculatePaymentSchedule(originalMortgage = false) {
 
     if (originalMortgage) {
-        loanAmount = $("#loanAmount").val().replace(/[^0-9\.-]+/g,"");
+        loanAmount = $("#loanAmount").val().replace(/[^0-9\.-]+/g, "");
         interestRate = $("#interestRate").val();
         loanTermYears = $("#loanTerm").val();
     } else {
@@ -279,7 +288,7 @@ function calculatePaymentSchedule(originalMortgage = false) {
     let inInterestRate = interestRate;
     let inLoanTermYears = loanTermYears;
     let inFirstPaymentDate = firstPaymentDate;
-    
+
     let numberOfPayments = inLoanTermYears * 12;
 
     if (originalMortgage)
@@ -287,7 +296,7 @@ function calculatePaymentSchedule(originalMortgage = false) {
     else
         updatedPaymentSchedule = [];
 
-    for (let paymentNumber = 1; paymentNumber <= numberOfPayments; paymentNumber++) {   
+    for (let paymentNumber = 1; paymentNumber <= numberOfPayments; paymentNumber++) {
 
         let payment = calculateMortgagePayment(paymentNumber, inFirstPaymentDate, inLoanAmount, inInterestRate, numberOfPayments, originalMortgage);
 

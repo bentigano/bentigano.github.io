@@ -11,6 +11,10 @@ body {
 tr {
   line-height: 1.5;
 }
-.table td {
+.table td, .table th {
   vertical-align: middle;
+}
+
+#interestGaugeDiv {
+  display: none;
 }
