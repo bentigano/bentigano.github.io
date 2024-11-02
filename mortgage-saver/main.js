@@ -145,13 +145,52 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
 
 function calculateMortgage() {
 
-    // add validation to ensure all values are present and numeric/valid
-    let loanAmount = $("#loanAmount").val();
-    let interestRate = $("#interestRate").val();
-    let loanTermYears = $("#loanTerm").val();
+    // START input validation
+    let valid = true;
+    let loanAmount = $("#loanAmount");
+    let interestRate = $("#interestRate");
+    let loanTermYears = $("#loanTerm");
     firstPaymentDate = new Date(Date.parse($("#firstPaymentDate").val()));
+
+    if (loanAmount.val() <= 10000) {
+        if(!loanAmount.hasClass('is-invalid')){
+            loanAmount.addClass('is-invalid');
+           }
+        valid = false;
+    } else {
+        loanAmount.removeClass("is-invalid");
+    }
+    if (interestRate.val() <= 0) {
+        if(!interestRate.hasClass('is-invalid')){
+            interestRate.addClass('is-invalid');
+           }
+        valid = false;
+    } else {
+        interestRate.removeClass("is-invalid");
+    }
+    if (loanTermYears.val() <= 0) {
+        if(!loanTermYears.hasClass('is-invalid')){
+            loanTermYears.addClass('is-invalid');
+           }
+        valid = false;
+    } else {
+        loanTermYears.removeClass("is-invalid");
+    }
+    if (!(firstPaymentDate instanceof Date && !isNaN(firstPaymentDate))) {
+        if(!$("#firstPaymentDate").hasClass('is-invalid')){
+            $("#firstPaymentDate").addClass('is-invalid');
+           }
+        valid = false;
+    } else {
+        $("#firstPaymentDate").removeClass("is-invalid");
+    }
+
+    if (!valid) return;
+    // END input validation
+
+    // address some issues with how the date comes on, and subtract a month so we can increment with each payment
     firstPaymentDate.setDate(firstPaymentDate.getDate() + 1);
-    firstPaymentDate.setMonth(firstPaymentDate.getMonth() - 1);    
+    firstPaymentDate.setMonth(firstPaymentDate.getMonth() - 1);
 
     lastChangedPaymentAmount = 0;
 
