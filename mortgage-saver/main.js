@@ -90,11 +90,13 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
 
     let extraPrincipalPayment = 0;
     let changedPaymentTo = 0;
+    let newPaymentIsValid = true;
 
     if (!originalMortgage) {
         // look at one time extra payment fields and changed payment fields (remove currency and thousand seperators)
         let extraPrincipalPaymentInput = $(`#pmt${paymentNumber}ExtraPayment`).val();
-        let changedPaymentToInput = $(`#pmt${paymentNumber}ChangePayment`).val();
+        let changedPaymentToInputField = $(`#pmt${paymentNumber}ChangePayment`)
+        let changedPaymentToInput = changedPaymentToInputField.val();
 
         if (extraPrincipalPaymentInput != undefined) {
             extraPrincipalPayment = parseFloat(extraPrincipalPaymentInput.replace(/[^0-9\.-]+/g, ""));
@@ -112,8 +114,18 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
             if (changedPaymentTo <= 0) {
                 monthlyPayment = lastChangedPaymentAmount;
             } else {
-                lastChangedPaymentAmount = changedPaymentTo;
-                monthlyPayment = changedPaymentTo;
+                newPaymentIsValid = changedPaymentTo >= originalPaymentSchedule[0].totalPayment;
+                // ensure the new payment is > the minimum payment due
+                if (newPaymentIsValid) {
+
+                    lastChangedPaymentAmount = changedPaymentTo;
+                    monthlyPayment = changedPaymentTo;
+                    changedPaymentToInputField.removeClass('is-invalid');
+                } else {
+                    if (!changedPaymentToInputField.hasClass('is-invalid')) {
+                        changedPaymentToInputField.addClass('is-invalid');
+                    }
+                }
             }
             principalOnly = monthlyPayment - interestOnly
         }
@@ -141,7 +153,8 @@ function calculateMortgagePayment(paymentNumber, paymentDate, loanAmount, intere
         paymentNumber: paymentNumber,
         resultingBalance: balanceAfterPayment,
         extraPrincipal: extraPrincipalPayment,
-        changePayment: changedPaymentTo
+        changePayment: changedPaymentTo,
+        validPaymentChange: newPaymentIsValid
     };
 }
 
@@ -207,11 +220,11 @@ function calculateMortgage() {
     $("#totalInterestPaid").val(USDollar.format(totalInterestPaid));
     $("#totalInterestSaved").val(USDollar.format((originalInterestDue - totalInterestPaid)));
 
-    $("#interestGaugeDiv").css("display","flex");
+    $("#interestGaugeDiv").css("display", "flex");
     let interestGauge = $("#interestGauge");
     let interestPercent = (totalInterestPaid / originalInterestDue) * 100;
     interestGauge.attr("aria-valuenow", interestPercent);
-    interestGauge.css("width",`${interestPercent}%`);
+    interestGauge.css("width", `${interestPercent}%`);
 
 
     let paymentsSaved = originalPaymentSchedule.length - updatedPaymentSchedule.length;
@@ -261,8 +274,12 @@ function calculateMortgage() {
                     
                 </td>
                 <td>
-                    
-                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
+                   <div style="position:relative;"> 
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact ${!payment.validPaymentChange ? "is-invalid" : ""}" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
+                        <div class="invalid-tooltip">
+                            New payment must be greater than the minimum payment amount of ${$("#minMonthlyPayment").val()}.
+                        </div>
+                    </div>
                     
                 </td>
             </tr>
