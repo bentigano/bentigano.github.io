@@ -270,12 +270,12 @@ function calculateMortgage() {
                 <td>${USDollar.format(totalInterest)}</td>-->
                 <td>
                     
-                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ExtraPayment" value='${payment.extraPrincipal > 0 ? USDollar.format(payment.extraPrincipal) : ''}' />
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact" style="max-width:10em;" onchange="calculateMortgage();" id="pmt${payment.paymentNumber}ExtraPayment" value='${payment.extraPrincipal > 0 ? USDollar.format(payment.extraPrincipal) : ''}' />
                     
                 </td>
                 <td>
                    <div style="position:relative;"> 
-                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact ${!payment.validPaymentChange ? "is-invalid" : ""}" style="max-width:10em;" placeholder="" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
+                        <input type="text" class="form-control form-control-sm mx-auto currency-field-exact ${!payment.validPaymentChange ? "is-invalid" : ""}" style="max-width:10em;" onchange="calculateMortgage();" id="pmt${payment.paymentNumber}ChangePayment" value='${payment.changePayment > 0 ? USDollar.format(payment.changePayment) : ''}' />
                         <div class="invalid-tooltip">
                             New payment must be greater than the minimum payment amount of ${$("#minMonthlyPayment").val()}.
                         </div>
